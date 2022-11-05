@@ -1,7 +1,7 @@
 <template>
   <GoogleMap
     api-key="AIzaSyAsTVz02osfRoiPVKJaMUewenELTa6RPsM"
-    style="width: 100%; height: 540px"
+    class="map"
     :center="center"
     :zoom="3"
   >
@@ -20,14 +20,19 @@
               <model-viewer
                 v-if="isMounted"
                 :src="markerOptions.modelUrl"
-                camera-controls
-              ></model-viewer>
+                :style="{ height: boxHeight }"
+                auto-rotate
+              >
+                <router-link
+                  :to="{
+                    path: 'model',
+                    query: { url: markerOptions.modelUrl },
+                  }"
+                  class="link"
+                ></router-link>
+              </model-viewer>
             </div>
             <!-- <a :href="markerOptions.modelViewUrl">View 3D model</a> -->
-            <router-link
-              :to="{ path: 'model', query: { url: markerOptions.modelUrl } }"
-              >View 3D Model</router-link
-            >
           </div>
         </InfoWindow>
       </Marker>
@@ -44,6 +49,7 @@ export default defineComponent({
   data() {
     return {
       isMounted: false,
+      boxHeight: "128px",
     };
   },
   mounted() {
@@ -88,3 +94,17 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+.map {
+  width: 100%;
+  height: 540px;
+}
+.link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+</style>
