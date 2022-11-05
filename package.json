@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@babylonjs/core": "^5.0.0-rc.13",
+    "@google/model-viewer": "^2.0.2",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
     "vue-3d-model": "^1.4.1",

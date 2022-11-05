@@ -1,34 +1,17 @@
-import {
-  Engine,
-  Scene,
-  Vector3,
-  ArcRotateCamera,
-  PointLight,
-  SceneLoader,
-} from "@babylonjs/core";
+import { Engine, Scene, SceneLoader, glTFFileLoader } from "@babylonjs/core";
+import {} from "@babylonjs/core"
+<script src="babylon.glTFFileLoader.js"></script>
 const createScene = (canvas, url) => {
   const engine = new Engine(canvas);
   const scene = new Scene(engine);
 
-  const light = new PointLight("Omni", new Vector3(20, 20, 100), scene);
-  const camera = new ArcRotateCamera(
-    "Camera",
-    0,
-    0.8,
-    100,
-    Vector3.Zero(),
-    scene
-  );
-  camera.attachControl(canvas, false);
+  SceneLoader.Append("", url, scene, function (scene) {
+    // Create a default arc rotate camera and light.
+    scene.createDefaultCameraOrLight(true, true, true);
 
-  console.log(url);
-
-  SceneLoader.ImportMesh("", "", url, scene, function (newMeshes) {
-    camera.target = newMeshes[0];
-  });
-
-  scene.registerBeforeRender(function () {
-    light.position = camera.position;
+    // The default camera looks at the back of the asset.
+    // Rotate the camera by 180 degrees to the front of the asset.
+    scene.activeCamera.alpha += Math.PI;
   });
 };
 

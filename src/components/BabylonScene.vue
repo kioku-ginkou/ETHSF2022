@@ -11,7 +11,7 @@ export default {
     const bjsCanvas = ref(null);
     onMounted(() => {
       if (bjsCanvas.value) {
-        createScene(bjsCanvas.value, "/models/poly.glb");
+        createScene(bjsCanvas.value, "models/poly.glb");
       }
     });
     return {
