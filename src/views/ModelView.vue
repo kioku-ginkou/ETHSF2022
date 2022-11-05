@@ -15,7 +15,6 @@ export default {
   mounted() {
     this.isMounted = true;
     this.url = this.$route.query.url;
-    console.log(this.url);
     this.loadComponent();
   },
   computed: {
@@ -25,3 +24,9 @@ export default {
   },
 };
 </script>
+<style>
+model-viewer {
+  width: 100%;
+  height: 540px;
+}
+</style>

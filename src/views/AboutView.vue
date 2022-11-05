@@ -1,7 +1,7 @@
 <template>
   <GoogleMap
     api-key="AIzaSyAsTVz02osfRoiPVKJaMUewenELTa6RPsM"
-    style="width: 100%; height: 500px"
+    style="width: 100%; height: 540px"
     :center="center"
     :zoom="3"
   >
@@ -17,9 +17,6 @@
               {{ markerOptions.eventName }}
             </h1>
             <div id="bodyContent">
-              {{ i }}
-              <br />
-              {{ markerOptions.modelUrl }}
               <model-viewer
                 v-if="isMounted"
                 :src="markerOptions.modelUrl"
@@ -67,7 +64,6 @@ export default defineComponent({
       icon: "/icon.png",
       eventName: "SuperEvent",
       modelUrl: "models/poly.glb",
-      modelViewUrl: "/#/model" + "?url=" + "models/poly.glb",
     };
 
     const markerOptions2 = {
@@ -75,8 +71,7 @@ export default defineComponent({
       title: "ENERGY",
       icon: "/icon.png",
       eventName: "HyperEvent",
-      modelUrl: "models/poly.glb",
-      modelViewUrl: "/#/model" + "?url=" + "models/poly.glb",
+      modelUrl: "models/poly2.glb",
     };
 
     const markerOptions3 = {
@@ -84,8 +79,7 @@ export default defineComponent({
       title: "DRIVE",
       icon: "/icon.png",
       eventName: "OmegaEvent",
-      modelUrl: "models/poly.glb",
-      modelViewUrl: "/#/model" + "?url=" + "models/poly.glb",
+      modelUrl: "models/poly3.glb",
     };
 
     const locations = [markerOptions1, markerOptions2, markerOptions3];
