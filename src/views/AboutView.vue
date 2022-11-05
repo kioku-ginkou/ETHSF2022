@@ -20,7 +20,17 @@
               {{ i }}
               <br />
               {{ markerOptions.modelUrl }}
+              <model-viewer
+                v-if="isMounted"
+                :src="markerOptions.modelUrl"
+                camera-controls
+              ></model-viewer>
             </div>
+            <!-- <a :href="markerOptions.modelViewUrl">View 3D model</a> -->
+            <router-link
+              :to="{ path: 'model', query: { url: markerOptions.modelUrl } }"
+              >View 3D Model</router-link
+            >
           </div>
         </InfoWindow>
       </Marker>
@@ -34,6 +44,20 @@ import { GoogleMap, Marker, MarkerCluster, InfoWindow } from "vue3-google-map";
 
 export default defineComponent({
   components: { GoogleMap, Marker, MarkerCluster, InfoWindow },
+  data() {
+    return {
+      isMounted: false,
+    };
+  },
+  mounted() {
+    this.isMounted = true;
+    this.loadComponent();
+  },
+  computed: {
+    loadComponent() {
+      return () => import("@google/model-viewer");
+    },
+  },
   setup() {
     const center = { lat: -31.56391, lng: 147.154312 };
 
@@ -42,7 +66,8 @@ export default defineComponent({
       title: "LED",
       icon: "/icon.png",
       eventName: "SuperEvent",
-      modelUrl: "https://google.com",
+      modelUrl: "models/poly.glb",
+      modelViewUrl: "/#/model" + "?url=" + "models/poly.glb",
     };
 
     const markerOptions2 = {
@@ -50,7 +75,8 @@ export default defineComponent({
       title: "ENERGY",
       icon: "/icon.png",
       eventName: "HyperEvent",
-      modelUrl: "https://google.com",
+      modelUrl: "models/poly.glb",
+      modelViewUrl: "/#/model" + "?url=" + "models/poly.glb",
     };
 
     const markerOptions3 = {
@@ -58,7 +84,8 @@ export default defineComponent({
       title: "DRIVE",
       icon: "/icon.png",
       eventName: "OmegaEvent",
-      modelUrl: "https://google.com",
+      modelUrl: "models/poly.glb",
+      modelViewUrl: "/#/model" + "?url=" + "models/poly.glb",
     };
 
     const locations = [markerOptions1, markerOptions2, markerOptions3];
