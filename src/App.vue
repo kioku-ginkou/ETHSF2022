@@ -8,6 +8,7 @@
         <input class="metaAdd" type="text" placeholder="      .........39c81" />
       </div>
     </nav>
+    <h3>so far, please please use private mode on your browser XD</h3>
     <router-view v-if="isMounted" />
   </div>
 </template>
