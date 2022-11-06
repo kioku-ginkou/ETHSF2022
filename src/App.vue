@@ -157,7 +157,7 @@ nav {
 
 .ourlogoclass {
   background-size: contain;
-  background-image: url("@/assets/ourlogo.png");
+  background-image: url("@/assets/logo.png");
 }
 
 .v-sidebar-menu {
