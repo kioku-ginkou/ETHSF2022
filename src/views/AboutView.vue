@@ -3,7 +3,7 @@
     api-key="AIzaSyAsTVz02osfRoiPVKJaMUewenELTa6RPsM"
     class="map"
     :center="center"
-    :zoom="3"
+    :zoom="12"
   >
     <MarkerCluster>
       <Marker
@@ -13,10 +13,10 @@
       >
         <InfoWindow>
           <div>
-            <h1 id="eventName" class="eventName">
-              {{ markerOptions.name }}
+            <h1 id="name" class="name">
+              {{ markerOptions.title }}
             </h1>
-            {{ markerOptions.description }}
+            <p>{{ markerOptions.description }}</p>
             <div id="bodyContent">
               <model-viewer
                 v-if="isMounted"
@@ -63,33 +63,58 @@ export default defineComponent({
     },
   },
   setup() {
-    const center = { lat: 37.802635, lng: -122.447928 };
+    const center = { lat: 37.80286462301539, lng: -122.44942170459915 };
 
     const jsondata = [
       {
-        name: "1st event",
-        description: "this is first event",
-        image: "JPEG URL of Skale filestorage",
+        name: "ETHGlobal2022 Area1",
+        description: "hack area",
+        image:
+          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly2.jpg",
+        animation_url:
+          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly2.glb",
+        Latitude: "37.80286462301539",
+        Longitude: "-122.44942170459915",
+      },
+      {
+        name: "ETHGlobal2022 Area2",
+        description: "workshop room",
+        image:
+          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly3.glb",
+        animation_url:
+          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly3.glb",
+        Latitude: "37.803583737286964",
+        Longitude: "-122.44925404862734",
+      },
+      {
+        name: "ETHGlobal2022 Area3",
+        description: "main stage",
+        image:
+          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly4.glb",
         animation_url:
           "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly4.glb",
-        Latitude: "38.802635",
-        Longitude: "-121.447928",
+        Latitude: "37.80269430545183",
+        Longitude: "-122.4494169144285",
       },
       {
-        name: "2st event",
-        description: "top event of animals",
-        image: "JPEG URL of Skale filestorage",
-        animation_url: "models/poly2.glb",
-        Latitude: "39.202635",
-        Longitude: "-123.447928",
+        name: "ETHGlobal2022 Area4",
+        description: "chill area",
+        image:
+          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly5.glb",
+        animation_url:
+          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly5.glb",
+        Latitude: "37.80294788923682",
+        Longitude: "-122.44908160248494",
       },
       {
-        name: "3st event",
-        description: "the biggest event about photo!",
-        image: "JPEG URL of Skale filestorage",
-        animation_url: "models/poly3.glb",
-        Latitude: "41.202635",
-        Longitude: "-120.447928",
+        name: "ETHGlobal2022 Area5",
+        description: "another hack area",
+        image:
+          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly6.glb",
+        animation_url:
+          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly6.glb",
+        Latitude: "37.80337557334946",
+        Longitude: "-122.44900495975499",
       },
     ];
 
@@ -154,5 +179,9 @@ export default defineComponent({
   top: 0;
   left: 0;
   z-index: 1;
+}
+.gm-style-iw {
+  min-height: 360px !important;
+  min-width: 540px !important;
 }
 </style>
