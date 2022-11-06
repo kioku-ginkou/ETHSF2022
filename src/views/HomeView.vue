@@ -1,4 +1,4 @@
 <template>
   <div>This is home</div>
-  <router-link to="/about">Please click here after 10 sec!</router-link>
+  <router-link to="/about">click here!</router-link>
 </template>

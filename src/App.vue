@@ -8,7 +8,7 @@
         <input class="metaAdd" type="text" placeholder="      .........39c81" />
       </div>
     </nav>
-    <router-view />
+    <router-view v-if="isMounted" />
   </div>
 </template>
 
@@ -25,6 +25,7 @@ var web3 = new Web3(
 export default {
   data() {
     return {
+      isMounted: false,
       tokenlist: [],
       nftAddress: "0xd4C4C6cFC75caae476212a9956A00837a02CBFd4",
       menu: [
@@ -98,6 +99,7 @@ export default {
     }
     // this.$listtest = tokenlist;
     console.log("global", this.$listtest);
+    this.isMounted = true;
   },
 };
 </script>
