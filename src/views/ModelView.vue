@@ -28,5 +28,7 @@ export default {
 model-viewer {
   width: 100%;
   height: 540px;
+  background-color: white;
+  border-radius: 8px;
 }
 </style>
