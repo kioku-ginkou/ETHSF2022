@@ -79,7 +79,7 @@ export default {
     const num_tokens = await contract.methods.totalSupply().call();
     // const rangeArray = [...Array(num_tokens)].map((_, i) => i);
     const proxySearver = "https://d2wac7uuh3wste.cloudfront.net/";
-    const tokenlist = [];
+    // const tokenlist = [];
     for (let i = 0; i < num_tokens; i++) {
       try {
         const tokenUri = await contract.methods.tokenURI(i).call();
@@ -91,11 +91,13 @@ export default {
         console.log(response);
         const token_metadata = await response.json();
         console.log("token meta", token_metadata);
-        tokenlist.push(token_metadata);
+        this.$listtest.push(token_metadata);
       } catch {
         console.log("error");
       }
     }
+    // this.$listtest = tokenlist;
+    console.log("global", this.$listtest);
   },
 };
 </script>

@@ -52,6 +52,8 @@ export default defineComponent({
       isMounted: false,
       boxHeight: "128px",
       tokenlist: [],
+      center: { lat: 37.80286462301539, lng: -122.44942170459915 },
+      locations: [],
     };
   },
   mounted() {
@@ -63,9 +65,9 @@ export default defineComponent({
       return () => import("@google/model-viewer");
     },
   },
-  setup() {
-    const center = { lat: 37.80286462301539, lng: -122.44942170459915 };
-    const jsondata = [
+  created() {
+    console.log(this.$listtest);
+    let jsondata = [
       {
         name: "ETHGlobal2022 Area1",
         description: "hack area",
@@ -117,6 +119,8 @@ export default defineComponent({
         Longitude: "-122.44900495975499",
       },
     ];
+    jsondata = this.$listtest;
+    console.log("transfered well", jsondata);
 
     const proxySearver = "https://d2wac7uuh3wste.cloudfront.net/";
     const locations = [];
@@ -169,8 +173,8 @@ export default defineComponent({
     // };
 
     // const locations = [markerOptions1, markerOptions2, markerOptions3];
-
-    return { center, locations };
+    this.locations = locations;
+    // return { center, locations };
   },
 });
 </script>
