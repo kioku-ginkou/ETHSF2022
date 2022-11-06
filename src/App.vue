@@ -13,9 +13,20 @@
 </template>
 
 <script>
+// import web3 from "web3";
+import abis from "@/abis.json";
+
+var Web3 = require("web3");
+var web3 = new Web3(
+  Web3.givenProvider ||
+    "https://eth-sf.skalenodes.com/v1/hackathon-complex-easy-naos"
+);
+
 export default {
   data() {
     return {
+      tokenlist: [],
+      nftAddress: "0xd4C4C6cFC75caae476212a9956A00837a02CBFd4",
       menu: [
         {
           header: "KIOKU GINKOU",
@@ -62,6 +73,29 @@ export default {
         },
       ],
     };
+  },
+  async mounted() {
+    const contract = new web3.eth.Contract(abis, this.nftAddress);
+    const num_tokens = await contract.methods.totalSupply().call();
+    // const rangeArray = [...Array(num_tokens)].map((_, i) => i);
+    const proxySearver = "https://d2wac7uuh3wste.cloudfront.net/";
+    const tokenlist = [];
+    for (let i = 0; i < num_tokens; i++) {
+      try {
+        const tokenUri = await contract.methods.tokenURI(i).call();
+        const tokenUriArr = tokenUri.split("/").slice(3);
+        const proxyUrl = proxySearver + tokenUriArr.join("/");
+        console.log(proxyUrl);
+
+        const response = await fetch(proxyUrl, { mode: "cors" });
+        console.log(response);
+        const token_metadata = await response.json();
+        console.log("token meta", token_metadata);
+        tokenlist.push(token_metadata);
+      } catch {
+        console.log("error");
+      }
+    }
   },
 };
 </script>
