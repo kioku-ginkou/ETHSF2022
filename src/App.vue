@@ -41,7 +41,7 @@ export default {
         },
         {
           title: "Events",
-          icon: "fa fa-chart-area",
+          icon: "eicon",
           child: [
             {
               href: "/charts/sublink",
@@ -60,7 +60,7 @@ export default {
         },
         {
           title: "Profile",
-          icon: "fa fa-chart-area",
+          icon: "picon",
           child: [
             {
               href: "/charts/sublink",
@@ -158,6 +158,16 @@ nav {
 .ourlogoclass {
   background-size: contain;
   background-image: url("@/assets/logo.png");
+}
+
+.picon {
+  background-size: contain;
+  background-image: url("@/assets/picon.png");
+}
+
+.eicon {
+  background-size: contain;
+  background-image: url("@/assets/eicon.png");
 }
 
 .v-sidebar-menu {
