@@ -51,6 +51,9 @@ export default defineComponent({
     return {
       isMounted: false,
       boxHeight: "128px",
+      tokenlist: [],
+      center: { lat: 37.80286462301539, lng: -122.44942170459915 },
+      locations: [],
     };
   },
   mounted() {
@@ -62,17 +65,16 @@ export default defineComponent({
       return () => import("@google/model-viewer");
     },
   },
-  setup() {
-    const center = { lat: 37.80286462301539, lng: -122.44942170459915 };
-
-    const jsondata = [
+  created() {
+    console.log(this.$listtest);
+    let jsondata = [
       {
         name: "ETHGlobal2022 Area1",
         description: "hack area",
         image:
-          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly2.jpg",
+          "https://eth-sf.skalenodes.com/fs/hackathon-complex-easy-naos/fca1e3182a40e529b8130bd58da6dbb710c1b99d/0.glb",
         animation_url:
-          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly2.glb",
+          "https://eth-sf.skalenodes.com/fs/hackathon-complex-easy-naos/fca1e3182a40e529b8130bd58da6dbb710c1b99d/0.glb",
         Latitude: "37.80286462301539",
         Longitude: "-122.44942170459915",
       },
@@ -82,7 +84,7 @@ export default defineComponent({
         image:
           "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly3.glb",
         animation_url:
-          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly3.glb",
+          "https://eth-sf.skalenodes.com/fs/hackathon-complex-easy-naos/fca1e3182a40e529b8130bd58da6dbb710c1b99d/1.glb",
         Latitude: "37.803583737286964",
         Longitude: "-122.44925404862734",
       },
@@ -92,7 +94,7 @@ export default defineComponent({
         image:
           "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly4.glb",
         animation_url:
-          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly4.glb",
+          "https://eth-sf.skalenodes.com/fs/hackathon-complex-easy-naos/fca1e3182a40e529b8130bd58da6dbb710c1b99d/2.glb",
         Latitude: "37.80269430545183",
         Longitude: "-122.4494169144285",
       },
@@ -102,7 +104,7 @@ export default defineComponent({
         image:
           "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly5.glb",
         animation_url:
-          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly5.glb",
+          "https://eth-sf.skalenodes.com/fs/hackathon-complex-easy-naos/fca1e3182a40e529b8130bd58da6dbb710c1b99d/3.glb",
         Latitude: "37.80294788923682",
         Longitude: "-122.44908160248494",
       },
@@ -112,20 +114,29 @@ export default defineComponent({
         image:
           "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly6.glb",
         animation_url:
-          "https://d2wac7uuh3wste.cloudfront.net/fs/hackathon-complex-easy-naos/30692914dadaf3eb4ad22f905cafe941abfa8bcc/poly6.glb",
+          "https://eth-sf.skalenodes.com/fs/hackathon-complex-easy-naos/fca1e3182a40e529b8130bd58da6dbb710c1b99d/4.glb",
         Latitude: "37.80337557334946",
         Longitude: "-122.44900495975499",
       },
     ];
+    jsondata = this.$listtest;
+    console.log("transfered well", jsondata);
 
+    const proxySearver = "https://d2wac7uuh3wste.cloudfront.net/";
     const locations = [];
     for (let i = 0; i < jsondata.length; i++) {
+      const animeurllist = jsondata[i].animation_url.split("/").slice(3);
+      //const iconurllist = jsondata[i].image.split("/").slice(3);
+      const proxyUrlAninme = proxySearver + animeurllist.join("/");
+      //const proxyUrlIcon = proxySearver + iconurllist.join("/");
+
       const location = {
         title: jsondata[i].name,
         description: jsondata[i].description,
         // icon: jsondata[i].image,
+
         icon: "/icon.png",
-        animation_url: jsondata[i].animation_url,
+        animation_url: proxyUrlAninme,
         position: {
           lat: parseFloat(jsondata[i].Latitude),
           lng: parseFloat(jsondata[i].Longitude),
@@ -162,8 +173,8 @@ export default defineComponent({
     // };
 
     // const locations = [markerOptions1, markerOptions2, markerOptions3];
-
-    return { center, locations };
+    this.locations = locations;
+    // return { center, locations };
   },
 });
 </script>
